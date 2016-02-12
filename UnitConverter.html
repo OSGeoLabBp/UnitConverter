@@ -1,0 +1,269 @@
+<html><head>
+
+<title>Átváltások</title>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-2">
+<script language="JavaScript" type="text/javascript">
+
+// törtszám kiírása adott számú tizedesjegyig
+function fix(number, decimals)
+{
+	var w;
+	w = Math.round(number *  Math.pow(10, decimals));
+	w = w /  Math.pow(10, decimals);
+	w = w + '';		// stringgé alalkítás
+	return w;
+}
+
+function hossz_enter(e)
+{
+   if (e.keyCode==13) {
+	hossz_atvalt();
+	document.hossz.atszamit.focus();
+   }
+}
+
+// hossz-számításhoz kapcsolodó mezők törlése
+function hossz_torol() {
+	document.hossz.meter.value = "";
+	document.hossz.ol.value = "";
+	document.hossz.lab.value = "";
+	document.hossz.yard.value = "";
+	document.hossz.merfold.value = "";
+	document.hossz.tengeri.value = "";
+}
+
+// hosszátváltás
+function hossz_atvalt() {
+	// átváltás méterbe
+	if (document.hossz.ol.value.length)
+		document.hossz.meter.value =  document.hossz.ol.value * 1.89648384;
+	else if (document.hossz.lab.value.length)
+		document.hossz.meter.value = document.hossz.lab.value / 3.2808398950131234;
+	else if (document.hossz.yard.value.length)
+		document.hossz.meter.value = document.hossz.yard.value / 1.0936132983377078;
+	else if (document.hossz.merfold.value.length)
+		document.hossz.meter.value = document.hossz.merfold.value / 0.0006213711922373339;
+	else if (document.hossz.tengeri.value.length)
+		document.hossz.meter.value = document.hossz.tengeri.value / 0.0005399568034557236;
+	// méterből a többi hianyzó mértékegységbe
+	if (document.hossz.ol.value.length == 0)
+		document.hossz.ol.value = fix(document.hossz.meter.value * 0.527291601, 3);
+	if (document.hossz.lab.value.length == 0)
+		document.hossz.lab.value = fix(document.hossz.meter.value * 3.2808398950131234, 2);
+	if (document.hossz.yard.value.length == 0)
+		document.hossz.yard.value = fix(document.hossz.meter.value * 1.0936132983377078, 2);
+	if (document.hossz.merfold.value.length == 0)
+		document.hossz.merfold.value = fix(document.hossz.meter.value * 0.0006213711922373339, 5);
+	if (document.hossz.tengeri.value.length == 0)
+		document.hossz.tengeri.value = fix(document.hossz.meter.value * 0.0005399568034557236, 5);
+}
+
+function terulet_enter(e)
+{
+   if (e.keyCode==13) {
+      terulet_atvalt();
+	  document.terulet.atszamit2.focus();
+   }
+}
+
+function terulet_torol() {
+	document.terulet.meter2.value = "";
+	document.terulet.ol2.value = "";
+	document.terulet.hektar.value = "";
+	document.terulet.khold.value = "";
+	document.terulet.acre.value = "";
+}
+
+function terulet_atvalt() {
+	// átváltás négyzetméterbe
+	if (document.terulet.ol2.value.length)
+		document.terulet.meter2.value = document.terulet.ol2.value * 3.5966;
+	else if (document.terulet.hektar.value.length)
+		document.terulet.meter2.value = document.terulet.hektar.value * 10000.0;
+	else if (document.terulet.khold.value.length)
+		document.terulet.meter2.value = document.terulet.khold.value * 1600.0 * 3.5966;
+	else if (document.terulet.acre.value.length)
+		document.terulet.meter2.value = document.terulet.acre.value * 4046.873;
+	// négyzetrméterből a többi hianyzó mértékegységbe
+	if (document.terulet.ol2.value.length == 0)
+		document.terulet.ol2.value = fix(document.terulet.meter2.value / 3.5966, 1);
+	if (document.terulet.hektar.value.length == 0)
+		document.terulet.hektar.value = fix(document.terulet.meter2.value / 10000.0, 5);
+	if (document.terulet.khold.value.length == 0)
+		document.terulet.khold.value = fix(document.terulet.meter2.value / 1600.0 / 3.5966, 5);
+	if (document.terulet.acre.value.length == 0)
+		document.terulet.acre.value = fix(document.terulet.meter2.value / 4046.873, 5);
+}
+function szog_enter(e)
+{
+   if (e.keyCode==13) {
+      szog_atvalt();
+	  document.szog.atszamit3.focus();
+   }
+}
+
+function szog_torol() {
+	document.szog.fok.value = "";
+	document.szog.dms.value = "";
+	document.szog.gon.value = "";
+	document.szog.mil.value = "";
+	document.szog.rad.value = "";
+}
+
+function szog_atvalt() {
+	var w, w1;
+	// átváltás radianba
+	if (document.szog.fok.value.length)
+		document.szog.rad.value = document.szog.fok.value * 0.017453292519943295769236907684886;
+	else if (document.szog.dms.value.length) {
+		w = document.szog.dms.value.split (new RegExp(/[- ]/));
+		w1 = 0;
+		if (w.length > 0) w1 = w[0] * 1;
+		if (w.length > 1) w1 += w[1] / 60.0
+		 if (w.length > 2) w1 += w[2] / 3600.0;
+		document.szog.rad.value = w1 * 0.017453292519943295769236907684886;
+	}
+	else if (document.szog.gon.value.length)
+		document.szog.rad.value = document.szog.gon.value * 0.015707963267948966192313216916398;
+	else if (document.szog.mil.value.length)
+		document.szog.rad.value = document.szog.mil.value * 4.9087385212340519350978802863742e-4;
+	// radiánból a többi hianyzó mértékegységbe
+	if (document.szog.fok.value.length == 0)
+		document.szog.fok.value = fix(document.szog.rad.value /  0.017453292519943295769236907684886, 5);
+	if (document.szog.dms.value.length == 0)
+	{
+		w = document.szog.rad.value /  0.017453292519943295769236907684886;
+		w1 = Math.floor(w);		// fokok
+		document.szog.dms.value = w1 + '-';
+		w  = (w - w1) * 60;
+		w1 = Math.floor(w) + '';		// percek
+		if (w1.length == 1) w1 = '0' + w1;
+		document.szog.dms.value  += w1 + '-';
+		w  = (w - w1) * 60;		// masodpercek
+		w1 = Math.round(w) + '';
+		if (w1.length == 1) w1 = '0' + w1;
+		document.szog.dms.value  += w1;
+	}
+	if (document.szog.gon.value.length == 0)
+		document.szog.gon.value = fix(document.szog.rad.value  / 0.015707963267948966192313216916398, 4);
+	if (document.szog.mil.value.length == 0)
+		document.szog.mil.value = fix(document.szog.rad.value / 4.9087385212340519350978802863742e-4, 0);
+}
+
+</script>
+</head><body bgcolor="#ffffff" text="#000000">
+
+<form name="hossz">
+  <b>Hossz mértékegységek</b> 
+  <table border="1" cellpadding="2" cellspacing="2">
+    <tbody><tr> 
+      <td align="center">m</td>
+      <td align="center">Bécsi öl</td>
+      <td align="center">Láb</td>
+      <td align="center">Yard</td>
+      <td align="center">Mérföld</td>
+      <td align="center">Tengeri <br>
+        mérföld</td>
+      <td align="center"> 
+        <input name="reset" value="Töröl" type="reset">
+      </td>
+    </tr>
+    <tr>
+      <td align="center"> 
+        <input name="meter" size="10" onfocus="hossz_torol()" onkeypress="hossz_enter(event)" type="text">
+      </td>
+      <td align="center"> 
+        <input name="ol" size="10" onfocus="hossz_torol()" onkeypress="hossz_enter(event)" type="text">
+      </td>
+      <td align="center"> 
+        <input name="lab" size="10" onfocus="hossz_torol()" onkeypress="hossz_enter(event)" type="text">
+      </td>
+      <td align="center"> 
+        <input name="yard" size="10" onfocus="hossz_torol()" onkeypress="hossz_enter(event)" type="text">
+      </td>
+      <td align="center"> 
+        <input name="merfold" size="10" onfocus="hossz_torol()" onkeypress="hossz_enter(event)" type="text">
+      </td>
+      <td align="center"> 
+        <input name="tengeri" size="10" onfocus="hossz_torol()" onkeypress="hossz_enter(event)" type="text">
+      </td>
+      <td align="center"> 
+        <input name="atszamit" value="Átszámít" onclick="hossz_atvalt()" type="Button">
+      </td>
+    </tr>
+  </tbody></table>
+</form>
+<form name="terulet">
+  <b>Terület mértékegységek</b> 
+  <table border="1" cellpadding="2" cellspacing="2">
+    <tbody><tr> 
+      <td align="center">m<sup>2</sup></td>
+      <td align="center">öl<sup>2</sup></td>
+      <td align="center">Hektár</td>
+       <td align="center">Kat. hold</td>
+     <td align="center">Acre</td>
+      <td align="center"> 
+        <input name="reset2" value="Töröl" type="reset">
+      </td>
+    </tr>
+    <tr> 
+      <td align="center"> 
+        <input name="meter2" size="10" onfocus="terulet_torol()" onkeypress="terulet_enter(event)" type="text">
+      </td>
+      <td align="center"> 
+        <input name="ol2" size="10" onfocus="terulet_torol()" onkeypress="terulet_enter(event)" type="text">
+      </td>
+      <td align="center"> 
+        <input name="hektar" size="10" onfocus="terulet_torol()" onkeypress="terulet_enter(event)" type="text">
+      </td>
+       <td align="center"> 
+        <input name="khold" size="10" onfocus="terulet_torol()" onkeypress="terulet_enter(event)" type="text">
+      </td>
+     <td align="center"> 
+        <input name="acre" size="10" onfocus="terulet_torol()" onkeypress="terulet_enter(event)" type="text">
+      </td>
+      <td align="center"> 
+        <input name="atszamit2" value="Átszámít" onclick="terulet_atvalt()" type="Button">
+      </td>
+    </tr>
+  </tbody></table>
+</form>
+<form name="szog">
+  <b>Szög mértékegységek</b> 
+  <table border="1" cellpadding="2" cellspacing="2">
+    <tbody><tr> 
+      <td align="center">Fok<sup></sup></td>
+      <td align="center">Fok-perc-mp<sup></sup></td>
+      <td align="center">Újfok</td>
+      <td align="center">Vonás (6400)</td>
+      <td align="center">Radián</td>
+      <td align="center"> 
+        <input name="reset3" value="Töröl" type="reset">
+      </td>
+    </tr>
+    <tr> 
+      <td align="center"> 
+        <input name="fok" size="10" onfocus="szog_torol()" onkeypress="szog_enter(event)" type="text">
+      </td>
+      <td align="center"> 
+        <input name="dms" size="10" onfocus="szog_torol()" onkeypress="szog_enter(event)" type="text">
+      </td>
+      <td align="center"> 
+        <input name="gon" size="10" onfocus="szog_torol()" onkeypress="szog_enter(event)" type="text">
+      </td>
+      <td align="center"> 
+        <input name="mil" size="10" onfocus="szog_torol()" onkeypress="szog_enter(event)" type="text">
+      </td>
+      <td align="center"> 
+        <input name="rad" size="10" onfocus="szog_torol()" onkeypress="szog_enter(event)" type="text">
+      </td>
+      <td align="center"> 
+        <input name="atszamit3" value="Átszámít" onclick="szog_atvalt()" type="Button">
+      </td>
+    </tr>
+  </tbody></table>
+</form>
+<p>Használat:</p>
+<p>Töltse ki a megfelelő mértékegység mezőjét és nyomja meg az Enter gombot vagy kattintson az átszámít
+gombra.
+</p></body></html>
