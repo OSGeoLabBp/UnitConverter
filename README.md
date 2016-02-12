@@ -1,2 +1,3 @@
 # UnitConverter
-Simple unit converter JavaScript application
+Simple unit converter JavaScript application for length, area, angle units.
+
