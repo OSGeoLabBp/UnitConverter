@@ -44,9 +44,8 @@ function dist_convert() {
 	$("#meter").val(fix(m, 3));
 	// change meter to all others
 	$("#fathom").val(fix(m * 0.527291601, 3));
-	$("#feet").val(fix(m * 3.2808398950131234, 2));
+	$("#feet").val(fix(m * 3.2808398950131234, 3));
 	$("#yard").val(fix(m * 1.0936132983377078, 2));
 	$("#mile").val(fix(m * 0.0006213711922373339, 5));
 	$("#nautical").val(fix(m * 0.0005399568034557236, 5));
-	$("#convert").focus();	// move focus to conveert button
 }
