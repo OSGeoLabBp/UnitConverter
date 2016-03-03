@@ -95,6 +95,7 @@ function area_convert(){
 	$("#cacre").val(fix(sm/1600/3.5966,3));
 	$("#acre").val(fix(sm/4046.873,3));
 	$("#convertarea").focus();
+}
  
  function angle_convert( ) {
 	var w, w1;
