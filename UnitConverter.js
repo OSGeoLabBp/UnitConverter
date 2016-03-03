@@ -22,6 +22,14 @@ $(document).ready(function () {
 	});
 	// convert value if convert button clicked
 	$("#convert").click(dist_convert);
+	$(".area").focus(function (e){
+		$(".area").val("");
+	});
+	$(".area").keypress(function(e) {
+		if (e.which == 13) {
+			area_convert();
+		}
+	});
 });
 
 // distance conversion
@@ -48,4 +56,34 @@ function dist_convert() {
 	$("#yard").val(fix(m * 1.0936132983377078, 2));
 	$("#mile").val(fix(m * 0.0006213711922373339, 5));
 	$("#nautical").val(fix(m * 0.0005399568034557236, 5));
+}
+
+function area_convert(){
+	//convert imput field to square meter
+	var sm;
+	if (
+		$("#sfathom").val().length) {
+			sm = $("#sfathom").val() * 3.5966;
+		}
+	else if (
+		$("#hectare").val().length) {
+			sm = $("#hectare").val() * 10000.0;
+		}
+	else if (
+		$("#cacre").val().length) {
+			sm = $("#cacre").val() * 1600.0 * 3.5966;
+		}
+	else if (
+		$("#acre").val().length) {
+			sm = $("#acre").val() * 4046.873;
+		}
+	else 
+		sm = $("#smeter").val() * 1;
+	
+	$("#smeter").val(fix(sm,3));
+	$("#sfathom").val(fix(sm/3.5966,3));
+	$("#hectare").val(fix(sm/10000.0,3));
+	$("#cacre").val(fix(sm/1600/3.5966,3));
+	$("#acre").val(fix(sm/4046.873,3));
+	$("#convertarea").focus();
 }
