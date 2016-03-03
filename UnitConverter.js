@@ -9,6 +9,8 @@ function fix(num, decimals)
 }
 
 $(document).ready(function () {
+	//
+	// Distances
 	// reset fields if one gets focus
 	$(".dist").focus(function (e) {
 		$(".dist").val("");
@@ -22,6 +24,8 @@ $(document).ready(function () {
 	});
 	// convert value if convert button clicked
 	$("#convert").click(dist_convert);
+	//
+	// Areas
 	$(".area").focus(function (e){
 		$(".area").val("");
 	});
@@ -30,6 +34,7 @@ $(document).ready(function () {
 			area_convert();
 		}
 	});
+	$("#convertarea").click(area_convert);
 	$(".angle").focus(function(e){
 		$(".angle").val("");
 	});
