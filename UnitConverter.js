@@ -95,10 +95,10 @@ function area_convert(){
 		sm = $("#smeter").val() * 1;
 	
 	$("#smeter").val(fix(sm,3));
-	$("#sfathom").val(fix(sm/3.5966,3));
-	$("#hectare").val(fix(sm/10000.0,3));
-	$("#cacre").val(fix(sm/1600/3.5966,3));
-	$("#acre").val(fix(sm/4046.873,3));
+	$("#sfathom").val((sm/3.5966).toFixed(5));
+	$("#hectare").val((sm/10000.0).toFixed(5));
+	$("#cacre").val((sm/1600/3.5966).toFixed(5));
+	$("#acre").val((sm/4046.873).toFixed(5));
 	$("#convertarea").focus();
 }
  
