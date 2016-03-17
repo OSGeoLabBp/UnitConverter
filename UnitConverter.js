@@ -12,11 +12,23 @@ $(document).ready(function () {
 	//
 	// Distances
 	// reset fields if one gets focus
-	$(".dist").focus(function (e) {
-		$(".dist").val("");
+	//$(".dist").focus(function (e) {
+		//$(".dist").val("");
 		// $("#reset").trigger("click");
-	});
+	//});
 	// convert value if enter pressed in a field
+	
+	$(".dist").focus(function (e) {
+   var van_erteke = 0;
+   $('.dist').each(function(){
+       if ($(this).val().length > 0)
+           van_erteke++;
+   });
+   console.log(van_erteke);
+   if (van_erteke > 1)
+       $("#reset").trigger("click");
+});
+
 	$(".dist").keypress(function(e) {
 		if (e.which == 13) {
 			dist_convert();
@@ -65,11 +77,11 @@ function dist_convert() {
 	}
 	$("#meter").val(fix(m, 3));
 	// change meter to all others
-	$("#fathom").val(fix(m * 0.527291601, 3));
-	$("#feet").val(fix(m * 3.2808398950131234, 3));
-	$("#yard").val(fix(m * 1.0936132983377078, 2));
-	$("#mile").val(fix(m * 0.0006213711922373339, 5));
-	$("#nautical").val(fix(m * 0.0005399568034557236, 5));
+	$("#fathom").val((m * 0.527291601).toFixed(3));
+	$("#feet").val((m * 3.2808398950131234).toFixed(3));
+	$("#yard").val((m * 1.0936132983377078).toFixed(3));
+	$("#mile").val((m * 0.0006213711922373339).toFixed(5));
+	$("#nautical").val((m * 0.0005399568034557236).toFixed(5));
 }
 
 function area_convert(){
@@ -122,9 +134,9 @@ function area_convert(){
 	else if ($("#mills").val().length)
 		w=$("#mills").val() * 4.9087385212340519350978802863742e-4;
 	//convert from radian
-	$("#radian").val(fix(w, 5));
+	$("#radian").val((w).toFixed(5));
 	deg = w / 0.017453292519943295769236907684886;
-	$("#degree").val(fix(deg, 6));
+	$("#degree").val((deg).toFixed(6));
 	w1 = Math.floor(deg);		// degrees
 	dms = w1 + '-';
 	min  = (deg - w1) * 60;
@@ -136,6 +148,6 @@ function area_convert(){
 	if (w1.length == 1) w1 = '0' + w1;
 	dms += w1;
 	$("#dms").val(dms);
-	$("#grad").val(fix(w / 0.015707963267948966192313216916398,5));
-	$("#mills").val(fix(w / 4.9087385212340519350978802863742e-4,0));
+	$("#grad").val((w / 0.015707963267948966192313216916398).toFixed(5));
+	$("#mills").val((w / 4.9087385212340519350978802863742e-4).toFixed(0));
 }

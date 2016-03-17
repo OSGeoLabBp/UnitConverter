@@ -5,9 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="UnitConverter.css">
 <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
-<!--
-<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
--->
+
 <script src="UnitConverter.js"></script>
 </head>
 <body>
@@ -16,31 +14,31 @@
     <legend>Distance units</legend> 
     <div class="container">
       <label>Meter</label>
-      <input name="meter" id="meter" class="dist" type="number" placeholder="distance" autofocus>
+      <input name="meter" id="meter" class="dist" type="number" placeholder="number" autofocus>
 	</div>
     <div class="container">
       <label>Fathom</label>
-      <input name="fathom" id="fathom" class="dist" type="text" placeholder="distance">
+      <input name="fathom" id="fathom" class="dist" type="text" placeholder="number">
 	</div>
     <div class="container">
       <label>Foot</label>
-      <input name="feet" id="feet" class="dist" type="text" placeholder="distance">
+      <input name="feet" id="feet" class="dist" type="text" placeholder="number">
 	</div>
     <div class="container">
       <label>Yard</label>
-      <input name="yard" id="yard" class="dist" type="text" placeholder="distance">
+      <input name="yard" id="yard" class="dist" type="text" placeholder="number">
 	</div>
     <div class="container">
       <label>Mile</label>
-      <input name="mile" id="mile" class="dist" type="text" placeholder="distance">
+      <input name="mile" id="mile" class="dist" type="text" placeholder="number">
 	</div>
     <div class="container">
       <label>Nautical mile</label>
-      <input name="nautical" id="nautical" class="dist" type="text"placeholder="distance">
+      <input name="nautical" id="nautical" class="dist" type="text"placeholder="number">
 	</div>
     <div class="container">
       <input name="convert" id="convert" value="Convert" type="button">
-      <input name="reset" value="Reset" type="reset">
+      <input name="reset" value="Reset" type="reset" id="reset">
     </div>
   </fieldset>
 </form>
@@ -49,32 +47,32 @@
 			<legend>Area units</legend>
 			<div class="container">
 				<label>Square meter</label> 
-				<input type="number" min="0" step="0.00001" id="smeter" name="smeter" class="area" placeholder="num,num">
+				<input type="number" min="0" step="0.00001" id="smeter" name="smeter" class="area" placeholder="number">
 			</div>
 			
 			<div class="container">
 				<label>Square fathom</label> 
-				<input type="number" min="0" step="0.00001" id="sfathom" name="sfathom" class="area" placeholder="num,num">
+				<input type="number" min="0" step="0.00001" id="sfathom" name="sfathom" class="area" placeholder="number">
 			</div>
 			
 			<div class="container">
 				<label>Hectare</label> 
-				<input type="number" min="0" step="0.00001" id="hectare" name="hectare" class="area" placeholder="num,num">
+				<input type="number" min="0" step="0.00001" id="hectare" name="hectare" class="area" placeholder="number">
 			</div>
 			
 			<div class="container">
 				<label>Cadastral acre</label> 
-				<input type="number" min="0" step="0.00001" id="cacre" name="cacre" class="area"placeholder="num,num">
+				<input type="number" min="0" step="0.00001" id="cacre" name="cacre" class="area"placeholder="number">
 			</div>
 			
 			<div class="container">
 				<label >Acre</label> 
-				<input type="number" min="0" step="0.00001" id="acre" name="acre" class="area" placeholder="num,num">
+				<input type="number" min="0" step="0.00001" id="acre" name="acre" class="area" placeholder="number">
 			</div>
 						
 			<div class="container">
 				<input name="convertarea" value="Convert" id="convertarea" type="button">
-				<input name="reset" value="Reset" id="reset" type="reset">
+				<input name="reset" value="Reset" id="reset" type="reset" id="reset">
 			</div>
 		</fieldset>
 		<form name="angle">
@@ -82,29 +80,29 @@
 		<legend>Angle units</legend> 
 		<div class="container">
 			<label>Degree</label>
-			<input type="number" min="0" step="0.000001" id="degree" class="angle">
+			<input type="number" min="0" step="0.000001" id="degree" class="angle" placeholder="number">
 		</div>
 		<div class="container">
 			<label>Deg-Min-Sec</label>
-			<input type="text" id="dms" class="angle" placeholder="Deg-Min-Sec">
+			<input type="text" id="dms" class="angle" placeholder="deg-min-sec">
 		</div>
 		</div>
 		<div class="container">
 			<label>Grads</label>
-			<input type="number" min="0" step="0.00001" id="grad" class="angle">
+			<input type="number" min="0" step="0.00001" id="grad" class="angle" placeholder="number">
 		</div>
 		<div class="container">
 			<label>Mills</label>
-			<input type="number" min="0" step="0.00001" id="mills" class="angle">
+			<input type="number" min="0" step="0.00001" id="mills" class="angle" placeholder="number">
 		</div>
 		<div class="container">
 			<label>Radian</label>
-			<input type="number" min="0" step="0.00001" id="radian" class="angle">
+			<input type="number" min="0" step="0.00001" id="radian" class="angle" placeholder="number">
 		</div>
 		
 		<div class="container">
        <input name="converta" id="converta" value="Convert" type="Button">
-	   <input name="reseta" id="reseta" value="Reset" type="Reset">
+	   <input name="reset" id="reset" value="reset" type="reset">
 	   		</div>
 
 		</fieldset>
