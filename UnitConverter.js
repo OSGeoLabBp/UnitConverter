@@ -124,17 +124,31 @@ function area_convert(){
 	//convert from radian
 	$("#radian").val(fix(w, 5));
 	deg = w / 0.017453292519943295769236907684886;
-	$("#degree").val(fix(deg, 6));
-	w1 = Math.floor(deg);		// degrees
-	dms = w1 + '-';
-	min  = (deg - w1) * 60;
-	w1 = Math.floor(min) + '';		// minutes
-	if (w1.length == 1) w1 = '0' + w1;
-	dms += w1 + '-'
-	sec  = (min - w1) * 60;		// masodpercek
-	w1 = Math.round(sec) + '';
-	if (w1.length == 1) w1 = '0' + w1;
-	dms += w1;
+	secall= fix(deg*3600, 0);
+	sec=secall % 60 + '';
+	minall=Math.floor(secall / 60);
+	min = minall % 60 + '';
+	deg =Math.floor(minall / 60);
+	if (sec.length == 1) sec = '0' + sec;
+	if (min.length == 1) min = '0' + min;
+	dms=deg+'-'+min+'-'+sec;	
+	
+	
+	
+	
+	// deg = w / 0.017453292519943295769236907684886;
+	// $("#degree").val(fix(deg, 6));
+	// w1 = Math.floor(deg);		// degrees
+	// dms = w1 + '-';
+	// min  = (deg - w1) * 60;
+	// w1 = Math.floor(min) + '';		// minutes
+	// if (w1.length == 1) w1 = '0' + w1;
+	// dms += w1 + '-'
+	// sec  = (min - w1) * 60;		// masodpercek
+	// w1 = Math.round(sec) + '';
+	// if (w1.length == 1) w1 = '0' + w1;
+	// dms += w1;
+	$("#degree").val(fix(w / 0.017453292519943295769236907684886,3));
 	$("#dms").val(dms);
 	$("#grad").val(fix(w / 0.015707963267948966192313216916398,5));
 	$("#mills").val(fix(w / 4.9087385212340519350978802863742e-4,0));
