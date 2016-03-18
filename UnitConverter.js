@@ -1,22 +1,24 @@
-// round float number to given decimals
-function fix(num, decimals)
-{
-	var w;
-	w = Math.round(num *  Math.pow(10, decimals));
-	w = w /  Math.pow(10, decimals);
-	w = w + '';		// convert to string
-	return w;
-}
-
 $(document).ready(function () {
 	//
 	// Distances
 	// reset fields if one gets focus
-	$(".dist").focus(function (e) {
-		$(".dist").val("");
+	//$(".dist").focus(function (e) {
+		//$(".dist").val("");
 		// $("#reset").trigger("click");
-	});
+	//});
 	// convert value if enter pressed in a field
+	
+	$(".dist").focus(function (e) {
+   var van_erteke = 0;
+   $('.dist').each(function(){
+       if ($(this).val().length > 0)
+           van_erteke++;
+   });
+   console.log(van_erteke);
+   if (van_erteke > 1)
+       $("#reset").trigger("click");
+});
+
 	$(".dist").keypress(function(e) {
 		if (e.which == 13) {
 			dist_convert();
@@ -63,13 +65,13 @@ function dist_convert() {
 	} else if ($("#meter").val().length) {
 		m = $("#meter").val() * 1.0;
 	}
-	$("#meter").val(fix(m, 3));
+	$("#meter").val(m.toFixed(3));
 	// change meter to all others
-	$("#fathom").val(fix(m * 0.527291601, 3));
-	$("#feet").val(fix(m * 3.2808398950131234, 3));
-	$("#yard").val(fix(m * 1.0936132983377078, 2));
-	$("#mile").val(fix(m * 0.0006213711922373339, 5));
-	$("#nautical").val(fix(m * 0.0005399568034557236, 5));
+	$("#fathom").val((m * 0.527291601).toFixed(3));
+	$("#feet").val((m * 3.2808398950131234).toFixed(3));
+	$("#yard").val((m * 1.0936132983377078).toFixed(3));
+	$("#mile").val((m * 0.0006213711922373339).toFixed(5));
+	$("#nautical").val((m * 0.0005399568034557236).toFixed(5));
 }
 
 function area_convert(){
@@ -122,9 +124,9 @@ function area_convert(){
 	else if ($("#mills").val().length)
 		w=$("#mills").val() * 4.9087385212340519350978802863742e-4;
 	//convert from radian
-	$("#radian").val(fix(w, 5));
+	$("#radian").val((w).toFixed(5));
 	deg = w / 0.017453292519943295769236907684886;
-	secall= fix(deg*3600, 0);
+	secall= (deg*3600).toFixed(0);
 	sec=secall % 60 + '';
 	minall=Math.floor(secall / 60);
 	min = minall % 60 + '';
@@ -132,24 +134,8 @@ function area_convert(){
 	if (sec.length == 1) sec = '0' + sec;
 	if (min.length == 1) min = '0' + min;
 	dms=deg+'-'+min+'-'+sec;	
-	
-	
-	
-	
-	// deg = w / 0.017453292519943295769236907684886;
-	// $("#degree").val(fix(deg, 6));
-	// w1 = Math.floor(deg);		// degrees
-	// dms = w1 + '-';
-	// min  = (deg - w1) * 60;
-	// w1 = Math.floor(min) + '';		// minutes
-	// if (w1.length == 1) w1 = '0' + w1;
-	// dms += w1 + '-'
-	// sec  = (min - w1) * 60;		// masodpercek
-	// w1 = Math.round(sec) + '';
-	// if (w1.length == 1) w1 = '0' + w1;
-	// dms += w1;
-	$("#degree").val(fix(w / 0.017453292519943295769236907684886,3));
+	$("#degree").val((w / 0.017453292519943295769236907684886).toFixed(6));
 	$("#dms").val(dms);
-	$("#grad").val(fix(w / 0.015707963267948966192313216916398,5));
-	$("#mills").val(fix(w / 4.9087385212340519350978802863742e-4,0));
+	$("#grad").val((w / 0.015707963267948966192313216916398).toFixed(5));
+	$("#mills").val((w / 4.9087385212340519350978802863742e-4).toFixed(0));
 }
