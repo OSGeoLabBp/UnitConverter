@@ -1,3 +1,6 @@
+var ang_pattern = /^[0-9]{1,3}-[0-9]{1,2}-[0-9]{1,2}$/;
+var num_pattern = /^[0-9]+(\.[0-9]*)?$/;
+
 $(document).ready(function () {
 	//
 	// Distances
@@ -38,7 +41,11 @@ $(document).ready(function () {
 	});
 	$("#convertarea").click(area_convert);
 	$(".angle").focus(function(e){
+		$(".angle").css('background-color', '');
+		var w = '#' + e.target.id;
+		var v = $(w).val();
 		$(".angle").val("");
+		$(w).val(v);
 	});
 	$(".angle").keypress(function(e) {
 		if (e.which == 13) {
@@ -105,13 +112,31 @@ function area_convert(){
 }
  
  function angle_convert( ) {
-	var w, w1;
+	var v, w, w1;
+	$(".angle").css('background-color', '');
 	//convert input field to radian
-	if ($("#degree").val().length)
-		w=$("#degree").val() * 0.017453292519943295769236907684886;
-	else if ($("#radian").val().length)
-		w=$("#radian").val() * 1;
+	
+	if ($("#degree").val().length) {
+		v = $("#degree").val().replace(',', '.');
+		if (! num_pattern.test(v)) {
+			$("#degree").css('background-color', 'red');
+			return;
+		}
+		w = v * 0.017453292519943295769236907684886;
+	}
+	else if ($("#radian").val().length){
+		v = $("#radian").val().replace(',', '.');
+		if (! num_pattern.test(v)) {
+			$("#radian").css('background-color', 'red');
+			return;
+		}
+		w = v * 1;
+	}
 	else if ($("#dms").val().length){
+		if (! ang_pattern.test($("#dms").val())) {
+			$("#dms").css('background-color', 'red');
+			return;
+		}
 		w = ($("#dms").val().split) (new RegExp(/[- ]/));
 		w1 = 0;
 		if (w.length > 0) w1 = w[0] * 1;
@@ -119,10 +144,21 @@ function area_convert(){
 		 if (w.length > 2) w1 += w[2] / 3600.0;
 		w = w1 * 0.017453292519943295769236907684886;
 	}
-	else if ($("#grad").val().length)
+	else if ($("#grad").val().length){
+		if (! num_pattern.test($("#grad").val())) {
+			$("#grad").css('background-color', 'red');
+			return;
+		}
 		w=$("#grad").val() * 0.015707963267948966192313216916398;
-	else if ($("#mills").val().length)
+	}
+	else if ($("#mills").val().length){
+		if (! num_pattern.test($("#mills").val())) {
+			$("#mills").css('background-color', 'red');
+			return;
+		}
 		w=$("#mills").val() * 4.9087385212340519350978802863742e-4;
+	}
+	if (! w) return;
 	//convert from radian
 	$("#radian").val((w).toFixed(5));
 	deg = w / 0.017453292519943295769236907684886;
