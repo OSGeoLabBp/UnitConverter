@@ -2,26 +2,15 @@ var ang_pattern = /^[0-9]{1,3}-[0-9]{1,2}-[0-9]{1,2}$/;
 var num_pattern = /^[0-9]+(\.[0-9]*)?$/;
 
 $(document).ready(function () {
-	//
-	// Distances
-	// reset fields if one gets focus
-	//$(".dist").focus(function (e) {
-		//$(".dist").val("");
-		// $("#reset").trigger("click");
-	//});
-	// convert value if enter pressed in a field
 	
-	$(".dist").focus(function (e) {
-   var van_erteke = 0;
-   $('.dist').each(function(){
-       if ($(this).val().length > 0)
-           van_erteke++;
-   });
-   console.log(van_erteke);
-   if (van_erteke > 1)
-       $("#reset").trigger("click");
-});
-
+	$(".dist").focus(function(e){
+		$(".dist").css('background-color', '');
+		var w = '#' + e.target.id;
+		var v = $(w).val();
+		$(".dist").val("");
+		$(w).val(v);
+	});
+	
 	$(".dist").keypress(function(e) {
 		if (e.which == 13) {
 			dist_convert();
@@ -29,17 +18,24 @@ $(document).ready(function () {
 	});
 	// convert value if convert button clicked
 	$("#convert").click(dist_convert);
-	//
-	// Areas
-	$(".area").focus(function (e){
+	
+	// Areas	
+	$(".area").focus(function(e){
+		$(".area").css('background-color', '');
+		var w = '#' + e.target.id;
+		var v = $(w).val();
 		$(".area").val("");
+		$(w).val(v);
 	});
+		
 	$(".area").keypress(function(e) {
 		if (e.which == 13) {
 			area_convert();
 		}
 	});
 	$("#convertarea").click(area_convert);
+	
+	//Angles
 	$(".angle").focus(function(e){
 		$(".angle").css('background-color', '');
 		var w = '#' + e.target.id;
@@ -57,20 +53,51 @@ $(document).ready(function () {
 
 // distance conversion
 function dist_convert() {
-	var m;
+	var m, v;
+	$(".dist").css('background-color', '');
 	// convert input field to meter
 	if ($("#fathom").val().length) {
-		m = $("#fathom").val() * 1.89648384;
+		v = $("#fathom").val().replace(',', '.');
+		if (! num_pattern.test(v)) {
+			$("#fathom").css('background-color', 'red');
+			return;
+		}
+		m = v * 1.89648384;
 	} else if ($("#feet").val().length) {
-		m = $("#feet").val() / 3.2808398950131234;
+		v = $("#feet").val().replace(',', '.');
+		if (! num_pattern.test(v)) {
+			$("#feet").css('background-color', 'red');
+			return;
+		}
+		m = v / 3.2808398950131234;
 	} else if ($("#yard").val().length) {
-		m = $("#yard").val() / 1.0936132983377078;
+		v = $("#yard").val().replace(',', '.');
+		if (! num_pattern.test(v)) {
+			$("#yard").css('background-color', 'red');
+			return;
+		}
+		m = v / 1.0936132983377078;
 	} else if ($("#mile").val().length) {
-		m = $("#mile").val() / 0.0006213711922373339;
+		v = $("#mile").val().replace(',', '.');
+		if (! num_pattern.test(v)) {
+			$("#mile").css('background-color', 'red');
+			return;
+		}
+		m = v / 0.0006213711922373339;
 	} else if ($("#nautical").val().length) {
-		m = $("#nautical").val() / 0.0005399568034557236;
+		v = $("#nautical").val().replace(',', '.');
+		if (! num_pattern.test(v)) {
+			$("#nautical").css('background-color', 'red');
+			return;
+		}
+		m = v / 0.0005399568034557236;
 	} else if ($("#meter").val().length) {
-		m = $("#meter").val() * 1.0;
+		v = $("#meter").val().replace(',', '.');
+		if (! num_pattern.test(v)) {
+			$("#meter").css('background-color', 'red');
+			return;
+		}
+		m = v * 1.0;
 	}
 	$("#meter").val(m.toFixed(3));
 	// change meter to all others
@@ -82,28 +109,50 @@ function dist_convert() {
 }
 
 function area_convert(){
+	$(".area").css('background-color', '');
 	//convert imput field to square meter
-	var sm;
-	if (
-		$("#sfathom").val().length) {
-			sm = $("#sfathom").val() * 3.5966;
+	var sm, v;
+	if ($("#sfathom").val().length) {
+		v = $("#sfathom").val().replace(',', '.');
+		if (! num_pattern.test(v)) {
+			$("#sfathom").css('background-color', 'red');
+			return;
 		}
-	else if (
-		$("#hectare").val().length) {
-			sm = $("#hectare").val() * 10000.0;
+		sm = v * 3.5966;
+	}
+	else if ($("#hectare").val().length) {
+		v = $("#hectare").val().replace(',', '.');
+		if (! num_pattern.test(v)) {
+			$("#hectare").css('background-color', 'red');
+			return;
 		}
-	else if (
-		$("#cacre").val().length) {
-			sm = $("#cacre").val() * 1600.0 * 3.5966;
+		sm = v * 10000.0;
+	}
+	else if ($("#cacre").val().length) {
+		v = $("#cacre").val().replace(',', '.');
+		if (! num_pattern.test(v)) {
+			$("#cacre").css('background-color', 'red');
+			return;
 		}
-	else if (
-		$("#acre").val().length) {
-			sm = $("#acre").val() * 4046.873;
+		sm = v * 1600.0 * 3.5966;
+	}
+	else if ($("#acre").val().length) {
+		v = $("#acre").val().replace(',', '.');
+		if (! num_pattern.test(v)) {
+			$("#acre").css('background-color', 'red');
+			return;
 		}
-	else 
-		sm = $("#smeter").val() * 1;
-	
-	$("#smeter").val(fix(sm,3));
+		sm = v * 4046.873;
+	}
+	else {
+		v = $("#smeter").val().replace(',', '.');
+		if (! num_pattern.test(v)) {
+			$("#smeter").css('background-color', 'red');
+			return;
+		}
+		sm = v * 1;
+	}
+	$("#smeter").val(sm.toFixed(3));
 	$("#sfathom").val((sm/3.5966).toFixed(5));
 	$("#hectare").val((sm/10000.0).toFixed(5));
 	$("#cacre").val((sm/1600/3.5966).toFixed(5));
