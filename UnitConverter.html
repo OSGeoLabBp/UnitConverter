@@ -33,7 +33,7 @@
       <input name="mile" id="mile" class="dist" type="text" placeholder="number">
 	</div>
     <div class="container">
-      <label>Nautical mile</label>
+      <label id="NauticalLabel">Nautical mile</label>
       <input name="nautical" id="nautical" class="dist" type="text" placeholder="number">
 	</div>
     <div class="container">
@@ -44,29 +44,29 @@
 </form>
 	<form name="area">
 			<fieldset>
-			<legend>Area units</legend>
+			<legend id="AreaUnits">Area units</legend>
 			<div class="container">
-				<label>Sqr meter</label> 
+				<label id="SqrMeterLabel">Sqr meter</label> 
 				<input type="text" id="smeter" name="smeter" class="area" placeholder="number">
 			</div>
 			
 			<div class="container">
-				<label>Sqr fathom</label> 
+				<label id="SqrFathomLabel">Sqr fathom</label> 
 				<input type="text" id="sfathom" name="sfathom" class="area" placeholder="number">
 			</div>
 			
 			<div class="container">
-				<label>Hectare</label> 
+				<label id="HectareLabel">Hectare</label> 
 				<input type="text" id="hectare" name="hectare" class="area" placeholder="number">
 			</div>
 			
 			<div class="container">
-				<label>Cad. acre</label> 
+				<label id="CadArcreLabel">Cad. acre</label> 
 				<input type="text" id="cacre" name="cacre" class="area"placeholder="number">
 			</div>
 			
 			<div class="container">
-				<label >Acre</label> 
+				<label id="AcreLabel">Acre</label> 
 				<input type="text" id="acre" name="acre" class="area" placeholder="number">
 			</div>
 						
@@ -77,26 +77,26 @@
 		</fieldset>
 		<form name="angle">
 		<fieldset>
-		<legend>Angle units</legend> 
+		<legend id="AngleUnits">Angle units</legend> 
 		<div class="container">
-			<label>Degree</label>
+			<label id="DegreeLabel">Degree</label>
 			<input type="text" id="degree" class="angle" placeholder="number">
 		</div>
 		<div class="container">
-			<label>Deg-Min-Sec</label>
+			<label id="DMSLabel">Deg-Min-Sec</label>
 			<input type="text" id="dms" class="angle" placeholder="deg-min-sec">  <!--[0-9]{1,3}-[0-9]{1,2}-[0-9]{1,2}$"-->
 		</div>
 		</div>
 		<div class="container">
-			<label>Grads</label>
+			<labeli id="GradLabel">Grads</label>
 			<input type="text" id="grad" class="angle" placeholder="number">
 		</div>
 		<div class="container">
-			<label>Mills</label>
+			<label id="MillLabel">Mills</label>
 			<input type="text" id="mills" class="angle" placeholder="number">
 		</div>
 		<div class="container">
-			<label>Radian</label>
+			<label id="RadianLabel">Radian</label>
 			<input type="text" id="radian" class="angle" placeholder="number">
 		</div>
 		
@@ -107,6 +107,6 @@
 
 		</fieldset>
 
-</form><p>Usage:</p>
-<p>Fill the field of the unit and click on Convert or press Enter key.
+</form><p id="Usage">Usage:</p>
+<p id="UsageText">Fill the field of the unit and click on Convert or press Enter key.
 </p></body></html>
