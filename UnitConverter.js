@@ -14,7 +14,8 @@ function upd(result) {
 $(document).ready(function () {
 	// get local messages
 	var lang = navigator.language.substr(0,2);
-	$.getJSON(lang + '.json', upd); 
+	if (! lang.match(/^en/))
+		$.getJSON(lang + '.json', upd); 
 
 	$(".dist").focus(function(e){
 		$(".dist").css('background-color', '');
