@@ -25,5 +25,8 @@
 	"convertarea": "Átvált",
 	"resetarea": "Töröl",
 	"convertangle": "Átvált",
-	"resetangle": "Töröl"
+	"resetangle": "Töröl",
+  "placeholders": "-------",
+    "plhnumber": "szám",
+	"plhdms": "fok-perc-mp"
 }

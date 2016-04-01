@@ -1,10 +1,13 @@
-var ang_pattern = /^[0-9]{1,3}-[0-9]{1,2}-[0-9]{1,2}$/;
-var num_pattern = /^[0-9]+(\.[0-9]*)?$/;
+var ang_pattern = /^[1-9][0-9]{1,2}([- d][0-9]{1,2}([- '][0-9]{1,2})?)?[" ]?$/;
+var num_pattern = /^[1-9][0-9]*([\.,][0-9]*)?$/;
 
 function upd(result) {
     $.each(result, function(i, field) { 
 		if (i.match(/^convert/) || i.match(/^reset/)) {
 			$('#' + i).attr('value', field);
+		} else if (i.match(/^plh/)) {
+			$('.' + i.substr(3)).attr('placeholder', field)
+		
 		} else {
 			$('#' + i).html(field);
 		}
