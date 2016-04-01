@@ -1,14 +1,13 @@
-var ang_pattern = /^[1-9][0-9]{1,2}([- d][0-9]{1,2}([- '][0-9]{1,2})?)?[" ]?$/;
+var ang_pattern = /^[1-9]([0-9]{1,2})?([- d][0-9]{1,2}([- '][0-9]{1,2})?)?[" ]?$/;
 var num_pattern = /^[1-9][0-9]*([\.,][0-9]*)?$/;
 
 function upd(result) {
     $.each(result, function(i, field) { 
-		if (i.match(/^convert/) || i.match(/^reset/)) {
-			$('#' + i).attr('value', field);
-		} else if (i.match(/^plh/)) {
+		if (i.match(/^btn/)) {		// update button text
+			$('.' + i.substr(3)).attr('value', field);
+		} else if (i.match(/^plh/)) {	// update placeholder text
 			$('.' + i.substr(3)).attr('placeholder', field)
-		
-		} else {
+		} else {					// update other html text
 			$('#' + i).html(field);
 		}
     }); 
@@ -34,7 +33,7 @@ $(document).ready(function () {
 		}
 	});
 	// convert value if convert button clicked
-	$("#convert").click(dist_convert);
+	$("#convertdist").click(dist_convert);
 	
 	// Areas	
 	$(".area").focus(function(e){
@@ -65,7 +64,7 @@ $(document).ready(function () {
 			angle_convert();
 		}
 	});
-	$("#converta").click(angle_convert);
+	$("#convertangle").click(angle_convert);
 });
 
 // distance conversion
