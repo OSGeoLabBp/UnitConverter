@@ -1,5 +1,5 @@
 var ang_pattern = /^[1-9]([0-9]{1,2})?([- d][0-9]{1,2}([- '][0-9]{1,2})?)?[" ]?$/;
-var num_pattern = /^[1-9][0-9]*([\.,][0-9]*)?$/;
+var num_pattern = /^([1-9][0-9]*|0)([\.,][0-9]*)?$/;
 
 function upd(result) {
     $.each(result, function(i, field) { 
