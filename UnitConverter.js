@@ -164,13 +164,22 @@ function area_convert(){
 			return;
 		}
 		sm = v * 4046.873;
+	} else if ($("#sqrft").val().length) {
+		v = $("#sqrft").val().replace(',', '.');
+		if (! num_pattern.test(v)) {
+			$("#sqrft").css('background-color', 'red');
+			return;
+		}
+		sm = v / 10.76391041671;
 	}
 	if (! sm) return;
+	// convert other fields to sq m
 	$("#smeter").val(sm.toFixed(3));
 	$("#sfathom").val((sm/3.5966).toFixed(5));
 	$("#hectare").val((sm/10000.0).toFixed(5));
 	$("#cacre").val((sm/1600/3.5966).toFixed(5));
 	$("#acre").val((sm/4046.873).toFixed(5));
+	$("#sqrft").val((sm*10.76391041671).toFixed(2));
 	$("#convertarea").focus();
 }
  
