@@ -1,6 +1,5 @@
 # UnitConverter
-Simple unit converter JavaScript application for length units. The application uses HTML5, jQuery to create a
+Simple unit converter JavaScript application for length, area and angle units. The application uses HTML5, jQuery to create a
 responsive page.
 
-Area and angle units are planed to involve.
-
+It is available on-line [here](http://www.agt.bme.hu/on_line/UnitConverter.html).
