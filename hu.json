@@ -18,7 +18,7 @@
 	"MillLabel": "Vonás",
 	"RadianLabel": "Radián",
   "Usage": "Használat",
-	"UsageText": "Töltsön ki egy mértékegység mezőt és nyomja meg az Enter gombot vagy az Átvált gombot",
+	"UsageText": "Töltsön ki egy mértékegység mezőt és nyomja meg az Enter billentyűt vagy az Átvált gombot",
   "buttons": "----",
 	"btnconvert": "Átvált",
 	"btnreset": "Töröl",
